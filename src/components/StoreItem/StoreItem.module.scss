@@ -1,0 +1,21 @@
+.item {
+	display: flex;
+
+	align-items: center;
+	justify-content: center;
+	width: 33%;
+	&-wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		span {
+			cursor: pointer;
+		}
+	}
+	&-notlogged {
+		color: grey !important;
+	}
+	&-button {
+		color: navy;
+	}
+}

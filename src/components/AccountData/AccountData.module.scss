@@ -1,0 +1,19 @@
+.account-data {
+	margin: 20px 40px;
+	position: relative;
+	left: 10%;
+	width: calc(90% - 40px);
+	&-header {
+		font-weight: 600;
+		font-size: 40px;
+		margin: 0 0 20px 0;
+	}
+	&-row {
+		padding: 10px 0;
+		color: grey;
+		span {
+			color: black;
+			font-weight: 600;
+		}
+	}
+}

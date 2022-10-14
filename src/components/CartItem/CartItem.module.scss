@@ -1,0 +1,45 @@
+.cart {
+	&-align {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	&-item {
+		font-size: 17px;
+		display: flex;
+		width: 100%;
+		height: 100px;
+		margin: 20px 0;
+		border: 1px solid black;
+	}
+	&-image {
+		width: 10%;
+		height: 100%;
+		img {
+			height: 80%;
+		}
+	}
+	&-title {
+		display: flex;
+		align-items: center;
+		padding: 0 0 0 30px;
+		width: 25%;
+	}
+	&-key {
+		width: 10%;
+	}
+	&-price {
+		width: 20%;
+	}
+	&-completed {
+		cursor: pointer;
+		color: blue;
+		width: 15%;
+	}
+	&-delete {
+		color: red;
+	}
+	&-status {
+		width: 20%;
+	}
+}
