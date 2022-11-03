@@ -1,27 +1,27 @@
-import type { Component } from 'solid-js';
+import { Component, onMount, onCleanup } from "solid-js";
 
-import logo from './logo.svg';
-import styles from './App.module.css';
+import logo from "./logo.svg";
+import css from "./App.module.scss";
+import { Routes, Route } from "@solidjs/router";
+import Header from "./components/Header/Header";
+import Home from "./pages/Home/Home";
+import Account from "./pages/Account/Account";
+import Cart from "./pages/Cart/Cart";
+import Store from "./pages/Store/Store";
 
 const App: Component = () => {
-  return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
-    </div>
-  );
+	const isLogged = localStorage.getItem("LOGIN");
+	!isLogged && localStorage.removeItem("CART");
+	return (
+		<div class={css.app}>
+			<Header />
+			<Routes>
+				<Route path="/account" component={Account} />
+				<Route path="/cart" component={Cart} />
+				<Route path="/" component={Store} />
+			</Routes>
+		</div>
+	);
 };
 
 export default App;

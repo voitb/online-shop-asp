@@ -1,0 +1,7 @@
+.input {
+	height: 30px;
+	border: 1px solid grey;
+	&-invalid {
+		border-color: red;
+	}
+}

@@ -1,0 +1,38 @@
+.cart {
+	width: calc(100% - 80px);
+	margin: 0 40px;
+	padding: 70px 0 0 0;
+	span {
+		position: relative;
+		left: 10%;
+		font-weight: 600;
+		font-size: 40px;
+	}
+	&-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	&-list {
+		width: 80%;
+		height: 80%;
+	}
+	&-no-padding {
+		padding: 0 !important;
+	}
+	&-button {
+		position: absolute;
+		right: 9%;
+		margin: 40px 0;
+		display: flex;
+		align-items: center;
+		gap: 40px;
+	}
+
+	&-empty {
+		margin: 100px 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
