@@ -1,4 +1,11 @@
-import { Component, createSignal, For, Index, onMount } from "solid-js";
+import {
+	Component,
+	createEffect,
+	createSignal,
+	For,
+	Index,
+	onMount,
+} from "solid-js";
 import Button from "../../components/Button/Button";
 import CartItem from "../../components/CartItem/CartItem";
 import { createItemOptions } from "../Store/Store";
@@ -39,7 +46,7 @@ const Cart: Component<{ hideHeader?: boolean }> = (props) => {
 
 	const handleOnClick = (id: number) => {
 		localStorage.setItem("CART", JSON.stringify([]));
-		const cartValues = values.map((value: any) => ({
+		const cartValues = cartItems().map((value: any) => ({
 			img: value.img,
 			itemprice: value.price,
 			itemname: value.title || value.name,
@@ -57,7 +64,17 @@ const Cart: Component<{ hideHeader?: boolean }> = (props) => {
 
 	const handleOnRemove = async (id: number) => {
 		if (!hideHeader) {
-			const filtered = values.filter((value: any) => value.id !== id);
+			const filtered = cartItems()
+				.map((item: any) => {
+					if (item.key === id) {
+						return undefined;
+					} else if (item.key > id) {
+						return { ...item, key: item.key - 1 };
+					} else {
+						return item;
+					}
+				})
+				.filter(Boolean);
 			!hideHeader && localStorage.setItem("CART", JSON.stringify(filtered));
 			setCartItems(filtered);
 		} else {
@@ -80,7 +97,6 @@ const Cart: Component<{ hideHeader?: boolean }> = (props) => {
 					<For each={cartItems()}>
 						{(item, i) => (
 							<CartItem
-								key={i() + 1}
 								data={{ value: item, isCartView: !hideHeader }}
 								methods={{ onRemove: handleOnRemove }}
 							/>

@@ -6,12 +6,9 @@ type Data = {
 	isCartView: boolean;
 };
 
-const CartItem: Component<{ key: number; data: Data; methods: any }> = (
-	props
-) => {
+const CartItem: Component<{ data: Data; methods: any }> = (props) => {
 	const {
 		data: { value, isCartView },
-		key,
 		methods: { onClick, onRemove },
 	} = props;
 	const getLogin = localStorage.getItem("LOGIN");
@@ -20,19 +17,19 @@ const CartItem: Component<{ key: number; data: Data; methods: any }> = (
 	return (
 		<div onClick={onClick} class={css["cart-item"]}>
 			<div classList={{ [css["cart-align"]]: true, [css["cart-key"]]: true }}>
-				{key}
+				{value?.key}
 			</div>
 			<div classList={{ [css["cart-align"]]: true, [css["cart-image"]]: true }}>
-				<img src={value.img} />
+				<img src={value?.img} />
 			</div>
-			<div class={css["cart-title"]}>{value.title || value.name}</div>
+			<div class={css["cart-title"]}>{value?.title || value?.name}</div>
 			<div classList={{ [css["cart-align"]]: true, [css["cart-price"]]: true }}>
-				{value.price}
+				{value?.price}
 			</div>
 			<div
 				classList={{ [css["cart-align"]]: true, [css["cart-status"]]: true }}
 			>
-				{value.status}
+				{value?.status}
 			</div>
 			<div
 				classList={{
@@ -40,7 +37,7 @@ const CartItem: Component<{ key: number; data: Data; methods: any }> = (
 					[css["cart-delete"]]: isCartView,
 					[css["cart-completed"]]: true,
 				}}
-				onClick={() => onRemove(value.id)}
+				onClick={() => onRemove(value?.key)}
 			>
 				{isAdmin && !isCartView && "Set as completed"}
 				{isCartView ? "x" : ""}

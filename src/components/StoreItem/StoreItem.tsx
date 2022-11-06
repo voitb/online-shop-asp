@@ -16,7 +16,10 @@ const StoreItem: Component<{
 		if (!isLoggedIn) return;
 		const getCart = localStorage.getItem("CART");
 		const value = getCart ? JSON.parse(getCart) : [];
-		localStorage.setItem("CART", JSON.stringify([...value, data]));
+		localStorage.setItem(
+			"CART",
+			JSON.stringify([...value, { key: value.length + 1, ...data }])
+		);
 	};
 
 	return (
