@@ -61,11 +61,11 @@ const Store: Component<{}> = (props) => {
 	const [rawOptions, setRawOptions] = createSignal<any>([]);
 	const [options, setOptions] = createSignal([]);
 
-	const handleOnCategory = (value: number) => {
+	const handleOnCategory = (value: number | string) => {
 		const filtered = rawOptions().filter(
 			(option: any) => +option.category === +value
 		);
-		setOptions(value ? filtered : testOptions);
+		setOptions(value !== "undefined" ? filtered : rawOptions());
 	};
 	const handleOnSearch = (value: string) => {
 		const filtered = rawOptions().filter((option: any) =>
