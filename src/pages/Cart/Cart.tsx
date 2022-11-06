@@ -62,13 +62,13 @@ const Cart: Component<{ hideHeader?: boolean }> = (props) => {
 		setCartItems([]);
 	};
 
-	const handleOnRemove = async (id: number) => {
+	const handleOnRemove = async (value: any) => {
 		if (!hideHeader) {
 			const filtered = cartItems()
 				.map((item: any) => {
-					if (item.key === id) {
+					if (item.key === value.key) {
 						return undefined;
-					} else if (item.key > id) {
+					} else if (item.key > value.key) {
 						return { ...item, key: item.key - 1 };
 					} else {
 						return item;
@@ -82,7 +82,7 @@ const Cart: Component<{ hideHeader?: boolean }> = (props) => {
 				method: "POST",
 				mode: "cors",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(id),
+				body: JSON.stringify(value.id),
 			});
 
 			await getItems().then((res) => setCartItems(res));

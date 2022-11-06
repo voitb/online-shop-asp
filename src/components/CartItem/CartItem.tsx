@@ -37,7 +37,7 @@ const CartItem: Component<{ data: Data; methods: any }> = (props) => {
 					[css["cart-delete"]]: isCartView,
 					[css["cart-completed"]]: true,
 				}}
-				onClick={() => onRemove(value?.key)}
+				onClick={() => onRemove(value)}
 			>
 				{isAdmin && !isCartView && "Set as completed"}
 				{isCartView ? "x" : ""}
