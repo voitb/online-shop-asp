@@ -6,10 +6,10 @@ const Select: Component<{ onChange: Function }> = (props) => {
 
 	const [categories, setCategories] = createSignal<any>([]);
 	onMount(() => {
-		fetch("http://localhost:8080/category/getAll", {
+		fetch("https://localhost:7059/api/Categories", {
 			method: "GET",
 			mode: "cors",
-			headers: { "Content-Type": "application/json" },
+			headers: { "Content-Type": " application/json; charset=utf-8" },
 		})
 			.then((e) => e.json())
 			.then((res) => {

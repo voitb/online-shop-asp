@@ -22,7 +22,7 @@ const Cart: Component<{ hideHeader?: boolean }> = (props) => {
 
 	const getItems = async () => {
 		let orders: any;
-		await fetch("http://localhost:8080/purchase/getAll", {
+		await fetch("https://localhost:7059/api/Purchases", {
 			method: "GET",
 			mode: "cors",
 			headers: { "Content-Type": "application/json" },
@@ -48,12 +48,12 @@ const Cart: Component<{ hideHeader?: boolean }> = (props) => {
 		localStorage.setItem("CART", JSON.stringify([]));
 		const cartValues = cartItems().map((value: any) => ({
 			img: value.img,
-			itemprice: value.price,
-			itemname: value.title || value.name,
+			itemprice: value.price.toString(),
+			itemname: (value.title || value.name).toString(),
 			userid: user.id,
 			status: "undelivered",
 		}));
-		fetch("http://localhost:8080/purchase/add", {
+		fetch("https://localhost:7059/api/Purchases", {
 			method: "POST",
 			mode: "cors",
 			headers: { "Content-Type": "application/json" },
@@ -78,11 +78,18 @@ const Cart: Component<{ hideHeader?: boolean }> = (props) => {
 			!hideHeader && localStorage.setItem("CART", JSON.stringify(filtered));
 			setCartItems(filtered);
 		} else {
-			await fetch("http://localhost:8080/purchase/setCompleted", {
-				method: "POST",
+			await fetch(`https://localhost:7059/api/Purchases/${value.id}`, {
+				method: "PUT",
 				mode: "cors",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(value.id),
+				body: JSON.stringify({
+					id: value.id,
+					img: value.img,
+					itemprice: value.price,
+					itemname: value.title || value.name,
+					userid: user.id,
+					status: "delivered",
+				}),
 			});
 
 			await getItems().then((res) => setCartItems(res));

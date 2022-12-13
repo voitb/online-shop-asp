@@ -6,7 +6,7 @@ const LoginPage: Component<{}> = (props) => {
 	const handleOnLogin = async (data: any) => {
 		let user: any;
 
-		await fetch("http://localhost:8080/user/getAll", {
+		await fetch("https://localhost:7059/api/Users", {
 			method: "GET",
 			mode: "cors",
 			headers: { "Content-Type": "application/json" },
@@ -33,7 +33,7 @@ const LoginPage: Component<{}> = (props) => {
 	};
 	const handleOnCreate = (data: any) => {
 		const registerData = { ...data, admin: data.login.includes("admin") };
-		fetch("http://localhost:8080/user/add", {
+		fetch("https://localhost:7059/api/Users", {
 			method: "POST",
 			mode: "cors",
 			headers: { "Content-Type": "application/json" },

@@ -75,7 +75,7 @@ const Store: Component<{}> = (props) => {
 	};
 
 	onMount(() => {
-		fetch("http://localhost:8080/item/getAll", {
+		fetch("https://localhost:7059/api/Items", {
 			method: "GET",
 			mode: "cors",
 			headers: { "Content-Type": "application/json" },
